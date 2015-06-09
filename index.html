@@ -46,8 +46,11 @@
          socket.on('chat message',function(msg){
            $('#messages').append($('<li>').text(msg));
          });
-         socket.on('newuser',function(msg){
-           $.('#messages').append($('<li>'.text(msg)));
+         socket.on('usercon',function(msg){
+           $('#messages').append($('<li>').text(msg));
+         });
+         socket.on('userdiscon',function(msg){
+           $('#messages').append($('<li>').text(msg));
          });
       </script> 
   </body>
