@@ -16,6 +16,7 @@ app.get('/',function(req,res){
 
 io.on('connection',function(socket){
 	console.log('a user connected');
+	socket.broadcast.emit('newuser',"New User Connected");
 	socket.on('chat message',function(msg){
 		console.log(msg["user-id"]+" message: "+msg["msg"]);
 		socket.broadcast.emit('chat message',msg["msg"]);
@@ -23,6 +24,7 @@ io.on('connection',function(socket){
 	socket.on('nick',function(msg){
 		console.log("Nick for : "+msg["user-id"]+msg["msg"]);
 	});
+	
 	socket.on('disconnect',function(){
 		console.log('  user disconnected');
 	});
