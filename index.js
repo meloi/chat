@@ -5,20 +5,13 @@ var io = require('socket.io')(http);
 //var session = require('express-session');
 var morgan= require('morgan');
 var uuid = require('node-uuid');
-
 var port = process.env.PORT || 3000;
-
 console.log('Socket.io chat app running from '+__dirname);
 app.use(morgan('dev'));
 app.get('/',function(req,res){
 	var id=uuid.v4();
 	res.cookie('user-id',id,{httpOnly:false});
 	res.sendFile(__dirname+'/index.html');
-});
-
-io.configure(function () {  
-  io.set("transports", ["xhr-polling"]); 
-  io.set("polling duration", 10); 
 });
 
 io.on('connection',function(socket){
@@ -35,6 +28,6 @@ io.on('connection',function(socket){
 	});
 });
 
-app.listen(port,function(){
-	console.log('Listening on port '+port);
+http.listen(port,function(){
+	console.log('Listening on port : ' +port );
 });
