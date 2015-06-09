@@ -5,6 +5,7 @@ var io = require('socket.io')(http);
 //var session = require('express-session');
 var morgan= require('morgan');
 var uuid = require('node-uuid');
+var port = process.env.PORT 
 console.log('Socket.io chat app running from '+__dirname);
 app.use(morgan('dev'));
 app.get('/',function(req,res){
@@ -27,6 +28,6 @@ io.on('connection',function(socket){
 	});
 });
 
-app.listen(app.get('port'),function(){
-	console.log('Listening on port '+app.get('port'));
+app.listen(port,function(){
+	console.log('Listening on port '+port;
 });
