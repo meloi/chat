@@ -11,7 +11,7 @@ var port = process.env.PORT || 3000;
 console.log('Socket.io chat app running from '+__dirname);
 app.use(morgan('dev'));
 app.use(parser());
-app.use(session({secret:"12363573dgsg"}));
+app.use(session({secret:"fried-potatoes"}));
 app.get('/',function(req,res){
 	var id=uuid.v4();
 	console.log(req.cookies);
