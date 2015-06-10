@@ -5,15 +5,17 @@ var io = require('socket.io')(http);
 //var session = require('express-session');
 var morgan= require('morgan');
 var uuid = require('node-uuid');
+var parser = require('cookie-parser')
+var session = require('express-session');
 var port = process.env.PORT || 3000;
 console.log('Socket.io chat app running from '+__dirname);
 app.use(morgan('dev'));
-app.use(express.cookieParser());
-app.use(express.sesion({secret:"12363573dgsg"}));
+app.use(parser());
+app.use(session({secret:"12363573dgsg"}));
 app.get('/',function(req,res){
 	var id=uuid.v4();
 	console.log(req.cookies);
-	if(req.cookies==undefined){
+	if(req.cookies["user-d"]==undefined){
 	res.cookie('user-id',id,{httpOnly:false, maxAge: 3600000});}
 	res.sendFile(__dirname+'/index.html');
 });
